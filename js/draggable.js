@@ -32,21 +32,24 @@ export default function draggable($element, config = defaultConfig) {
     $marker.addEventListener('pointercancel', handlePointerCancel)
     $marker.addEventListener('pointermove', handlePointerMove)
 
-    if(config.animatable) {
+    if (config.animatable) {
       setAnimations()
     }
 
 
     function handlePointerCancel() {
        logger('Pointer Cancel')
+       dragEnd()
     }
 
     function handlePointerUp() {
        logger('Pointer Up')
+       dragEnd()
     }
 
     function handlePointerOut() {
       logger('Pointer Out')
+      dragEnd()
     }
 
     function handlePointerDown() {
@@ -68,10 +71,23 @@ export default function draggable($element, config = defaultConfig) {
       return event.pageY || event.touches[0].pageY
      }
 
+     function bounce() {
+      if (widgetPosition < ELEMENT_BLOCK_SIZE / 2) {
+          return open()
+      } return close()
+
+  }
+
      function startDrag(event) {
       isDragging = true
       startY = pageY(event)
      }
+
+     function dragEnd() {
+      logger('DRAG END')
+      isDragging = false
+      bounce()
+  }
 
     function toggle() {
         if(!isDragging) {

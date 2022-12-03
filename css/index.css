@@ -4,6 +4,7 @@
 @import './tabs.css';
 @import './day-weather.css';
 @import './loading.css';
+@import './weather-stats.css';
 
 .app {
   block-size: 100vh;
