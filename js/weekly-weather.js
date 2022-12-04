@@ -45,5 +45,5 @@ export default async function weeklyWeather() {
 
     const weeklist = formatWeekList(weather.list)
     configWeeklyWeather(weeklist)
-    draggable()
+    draggable($container)
 }

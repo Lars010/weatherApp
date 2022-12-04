@@ -36,6 +36,10 @@ export default function draggable($element, config = defaultConfig) {
       setAnimations()
     }
 
+    function setAnimations() {
+      $element.style.transition = 'margin-bottom .3s'
+  }
+
 
     function handlePointerCancel() {
        logger('Pointer Cancel')
@@ -130,6 +134,9 @@ export default function draggable($element, config = defaultConfig) {
       widgetPosition = widgetPosition + movementY
       logger(movementY)
       startY = cursorY
-      setWidgetPosition(movementY)
+      if (widgetPosition > HIDDEN_Y_POSITION) {
+        return false
+    }
+      setWidgetPosition(widgetPosition)
     }
 }
